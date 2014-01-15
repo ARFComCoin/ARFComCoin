@@ -50,7 +50,7 @@ map<uint256, map<uint256, CDataStream*> > mapOrphanTransactionsByPrev;
 // Constant stuff for coinbase transactions we create:
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "ARFComCoin Signed Message:\n";
+const string strMessageMagic = "ArfComCoin Signed Message:\n";
 
 double dHashesPerSec;
 int64 nHPSTimerStart;
@@ -833,14 +833,14 @@ int64 static GetBlockValue(int nHeight, int64 nFees)
 
     if(nHeight < 4320) // no block reward within the first 3 days
         nSubsidy = 0;
-    if(nHeight > 91320) // no block reward after 5 years
+    if(nHeight > 91320) // no block reward after  about 60 days
         nSubsidy = 0;
 
     return nSubsidy + nFees;
 }
 
-static const int64 nTargetTimespan = 0.25 * 24 * 60 * 60; // ARFComCoin: 0.25 days
-static const int64 nTargetSpacing = 60; // ARFComCoin: 60 seconds
+static const int64 nTargetTimespan = 0.25 * 24 * 60 * 60; // ArfComCoin: 0.25 days
+static const int64 nTargetSpacing = 60; // ArfComCoin: 60 seconds
 static const int64 nInterval = nTargetTimespan / nTargetSpacing;
 
 // Thanks: Balthazar for suggesting the following fix
@@ -1931,7 +1931,7 @@ bool CheckDiskSpace(uint64 nAdditionalBytes)
         string strMessage = _("Warning: Disk space is low");
         strMiscWarning = strMessage;
         printf("*** %s\n", strMessage.c_str());
-        uiInterface.ThreadSafeMessageBox(strMessage, "ARFComCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
+        uiInterface.ThreadSafeMessageBox(strMessage, "ArfComCoin", CClientUIInterface::OK | CClientUIInterface::ICON_EXCLAMATION | CClientUIInterface::MODAL);
         StartShutdown();
         return false;
     }
@@ -1987,7 +1987,7 @@ bool LoadBlockIndex(bool fAllowNew)
         pchMessageStart[1] = 0xc0;
         pchMessageStart[2] = 0xb8;
         pchMessageStart[3] = 0xdb;
-        hashGenesisBlock = uint256("0x3300829efcfc726caf964b900f5ff32031cca29ce593aed34bddf9ccdf209f56");
+        hashGenesisBlock = uint256("0xa50faf35e1dddf4a076a907fbcef6d9d1595390cdb1c818a35dae53b67ad0aa8");
     }
 
     //
@@ -2007,7 +2007,7 @@ bool LoadBlockIndex(bool fAllowNew)
             return false;
     
 	// Genesis block:
-	// block.nTime = 1389733557 
+	// block.nTime = 1366559428 
 	// block.nNonce = 2085386442 
 	// block.GetHash = 384b060671f4a93948e9c168216dadb0ca2fbc54aa11c86b0345b6af1c59b2f5
 	// CBlock(hash=384b060671f4a93948e9, PoW=00000951e146b0026411, ver=1,
@@ -2019,7 +2019,7 @@ bool LoadBlockIndex(bool fAllowNew)
 	// vMerkleTree: 5a2e19825b
         
         // Genesis block
-        const char* pszTimestamp = "Genesis epoch 1389733557";
+        const char* pszTimestamp = "Cool Story, Bro";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2031,24 +2031,24 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1389733557;
+        block.nTime    = 1389745587;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 387721961;
+        block.nNonce   = 2085386442;
 
         if (fTestNet)
         {
-            block.nTime    = 1389733557;
-            block.nNonce   = 387721961;
+            block.nTime    = 1389745587;
+            block.nNonce   = 386402991;
         }
 
         //// debug print
         printf("%s\n", block.GetHash().ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0xc01e3ecfd07c6cbb4980d55533fe4e6b05364c7240db93872110f0821279047c"));
+        assert(block.hashMerkleRoot == uint256("0x5a2e19825b4162f68602039040f1e05d9f924ff00a3aff7327ca6abd6f3279bc"));
 
         // If genesis block hash does not match, then generate new genesis hash.
-        if (true && block.GetHash() != hashGenesisBlock)
+        if (false && block.GetHash() != hashGenesisBlock)
         {
             printf("Searching for genesis block...\n");
             // This will figure out a valid hash and Nonce if you're
