@@ -1,4 +1,4 @@
-ARFComCoin (ARF) - a 'faster' version of Litecoin which also uses scrypt
+ARFComCoin (ACC) - a 'faster' version of Litecoin which also uses scrypt
 as a proof of work scheme and is intended for microtransactions.
  - 60 second block targets
  - 87000 total coins
