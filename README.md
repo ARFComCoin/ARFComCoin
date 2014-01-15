@@ -1,7 +1,7 @@
 ARFComCoin (ARF) - a 'faster' version of Litecoin which also uses scrypt
 as a proof of work scheme and is intended for microtransactions.
- - 60 seconds block targets
- - 87000
+ - 60 second block targets
+ - 87000 total coins
  - no subsidy within the first 3 days and after approximately 60days;
     in between: 1 coins per generated block
  - difficulty retargets every 0.25 days
